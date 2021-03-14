@@ -1,3 +1,11 @@
+const newTodoKeyEvent = (e) => {
+  if (e.code === "Enter") {
+    addTodo();
+  }
+}
+
+document.getElementById('new_item').addEventListener('keydown', newTodoKeyEvent);
+
 const addTodo = () => {
   const todoValue = document.getElementById("new_item").value;
   if (todoValue != null && todoValue != '') {
