@@ -40,3 +40,25 @@ const incompleteTodo = (item) => {
   item.remove();
   updateCount('incomplete');
 }
+
+const updateCount = (actionType) => {
+  let incompleteCount = parseInt(document.getElementById('incomplete_count').innerText.substring(1,2));
+  console.log(document.getElementById('incomplete_count').innerText.substring(1,2));
+  let completeCount = parseInt(document.getElementById('complete_count').innerText.substring(1,2));
+
+  switch(actionType) {
+    case 'incomplete':
+      completeCount -= 1;
+      break;
+    case 'add':
+      incompleteCount += 1;
+      break;
+    case 'complete':
+      incompleteCount -= 1;
+      completeCount += 1;
+      break;
+  }
+
+  document.getElementById('incomplete_count').innerHTML = '(' + incompleteCount.toString() + ')';
+  document.getElementById('complete_count').innerHTML = '(' + completeCount.toString() + ')';
+}
