@@ -40,3 +40,59 @@ p {
   box-shadow: 0 0 25px rgba(0, 0, 0, 0.25);
   background: white;
 }
+
+div.container-items {
+  flex-grow: 1;
+  padding: 20px;
+}
+
+div.item {
+  cursor: pointer;
+  margin: 0 0 10px 0;
+  display: flex;
+  justify-content: center;
+}
+div.item > span {
+  flex-grow: 1
+}
+div.item > img.trash {
+  max-height: 1rem;
+  cursor: pointer;
+}
+
+div.title {
+  font-weight: bold;
+  font-size: 1.2em;
+}
+
+
+div.complete {
+  text-decoration: line-through;
+  color: rgba(0, 0, 0, 0.25)
+}
+
+div.add_form {
+  border-top: 1px solid #afafaf;
+  display: flex;
+  padding: 10px;
+  justify-content: center;
+  align-items: center;
+}
+
+input#new_item {
+  text-align: center;
+  border: 1px solid #bfbfbf;
+  border-radius: 1rem;
+  padding: 5px;
+  margin-right: 10px;
+  flex-grow: 1;
+}
+
+button.add_todo {
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  background-color: #2ec1ac;
+  color: white;
+  text-align: center;
+}
