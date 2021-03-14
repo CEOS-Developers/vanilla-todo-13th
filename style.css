@@ -71,13 +71,13 @@ div.item > img.trash {
 
 .hide {
   animation-name: showHide;
-  animation-duration: 1s;
+  animation-duration: 0.75s;
   animation-fill-mode: forwards;
 }
 
 .show {
   animation-name: showHIde;
-  animation-duration: 1s;
+  animation-duration: 0.75s;
   animation-fill-mode: forwards;
   animation-direction: reverse;
 }
