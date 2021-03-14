@@ -1,10 +1,10 @@
-const newTodoKeyEvent = (e) => {
+const handleTodoInputKeyEvent = (e) => {
   if (e.code === "Enter") {
     addTodo();
   }
 }
 
-document.getElementById('new_item').addEventListener('keydown', newTodoKeyEvent);
+document.getElementById('new_item').addEventListener('keydown', handleTodoInputKeyEvent);
 
 const addTodo = () => {
   const todoValue = document.getElementById("new_item").value;
@@ -23,6 +23,8 @@ const addTodo = () => {
     
     let newItem = document.createElement('div');
     newItem.className = "item";
+    newItem.addEventListener('mouseover', handleTodoMouseOver(trashImg));
+    newItem.addEventListener('mouseout', handleTodoMouseOut(trashImg));
     todoSpan.addEventListener('click', () => {completeTodo(newItem)});
     newItem.appendChild(todoSpan);
     trashImg.addEventListener('click', () => {removeTodo(newItem)});
