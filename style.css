@@ -60,6 +60,28 @@ div.item > img.trash {
   cursor: pointer;
 }
 
+@keyframes showHide {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+.hide {
+  animation-name: showHide;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+}
+
+.show {
+  animation-name: showHIde;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+  animation-direction: reverse;
+}
+
 div.title {
   font-weight: bold;
   font-size: 1.2em;

@@ -4,6 +4,14 @@ const handleTodoInputKeyEvent = (e) => {
   }
 }
 
+const handleTodoMouseOver = (item) => {
+  item.childNodes[1].className = "trash show"
+}
+
+const handleTodoMouseOut = (item) => {
+  item.childNodes[1].className = "trash hide"
+}
+
 document.getElementById('new_item').addEventListener('keydown', handleTodoInputKeyEvent);
 
 const addTodo = () => {
