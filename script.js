@@ -22,3 +22,21 @@ const addTodo = () => {
     document.getElementById('container-items-incomplete').appendChild(newItem);
   }
 }
+
+const completeTodo = (item) => {
+  let completedItem = item.cloneNode(true);
+  completedItem.className = "item complete"
+  completedItem.addEventListener('click', () => {incompleteTodo(completedItem)});
+  document.getElementById('container-items-complete').appendChild(completedItem);
+  item.remove();
+  updateCount('complete');
+}
+
+const incompleteTodo = (item) => {
+  let completedItem = item.cloneNode(true);
+  completedItem.className = "item"
+  completedItem.addEventListener('click', () => {completeTodo(completedItem)});
+  document.getElementById('container-items-incomplete').appendChild(completedItem);
+  item.remove();
+  updateCount('incomplete');
+}
