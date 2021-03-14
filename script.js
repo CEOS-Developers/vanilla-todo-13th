@@ -4,12 +4,12 @@ const handleTodoInputKeyEvent = (e) => {
   }
 }
 
-const handleTodoMouseOver = (item) => {
-  item.className = "trash show"
+const handleTodoMouseOver = (trashImg) => {
+  trashImg.className = "trash show"
 }
 
-const handleTodoMouseOut = (item) => {
-  item.className = "trash hide"
+const handleTodoMouseOut = (trashImg) => {
+  trashImg.className = "trash hide"
 }
 
 document.getElementById('new_item').addEventListener('keydown', handleTodoInputKeyEvent);
@@ -27,7 +27,7 @@ const addTodo = () => {
     const trashImg = document.createElement('img');
     trashImg.src = 'img/bin.png';
     trashImg.alt = 'complete';
-    trashImg.className = 'trash hide';
+    trashImg.className = 'trash hidden';
     
     let newItem = document.createElement('div');
     newItem.className = "item";

@@ -60,7 +60,7 @@ div.item > img.trash {
   cursor: pointer;
 }
 
-@keyframes showHide {
+@keyframes fadeOut {
   from {
     opacity: 1;
   }
@@ -69,17 +69,31 @@ div.item > img.trash {
   }
 }
 
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
 .hide {
-  animation-name: showHide;
+  animation-name: fadeOut;
   animation-duration: 0.75s;
   animation-fill-mode: forwards;
+  animation-play-state: running;
+}
+
+.hidden {
+  opacity: 0;
 }
 
 .show {
-  animation-name: showHIde;
+  animation-name: fadeIn;
   animation-duration: 0.75s;
   animation-fill-mode: forwards;
-  animation-direction: reverse;
+  animation-play-state: running;
 }
 
 div.title {
