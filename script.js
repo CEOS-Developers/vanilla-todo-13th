@@ -49,7 +49,6 @@ const updateCount = (actionType) => {
   switch(actionType) {
     case 'incomplete':
       completeCount -= 1;
-      break;
     case 'add':
       incompleteCount += 1;
       break;
