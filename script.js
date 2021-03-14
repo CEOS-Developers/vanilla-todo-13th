@@ -20,21 +20,24 @@ const addTodo = () => {
     trashImg.src = 'img/bin.png';
     trashImg.alt = 'complete';
     trashImg.className = 'trash';
-  
+    
     let newItem = document.createElement('div');
     newItem.className = "item";
-    newItem.addEventListener('click', () => {completeTodo(newItem)});
+    todoSpan.addEventListener('click', () => {completeTodo(newItem)});
     newItem.appendChild(todoSpan);
+    trashImg.addEventListener('click', () => {removeTodo(newItem)});
     newItem.appendChild(trashImg);
     
     document.getElementById('container-items-incomplete').appendChild(newItem);
+    updateCount('add');
   }
 }
 
 const completeTodo = (item) => {
   let completedItem = item.cloneNode(true);
   completedItem.className = "item complete"
-  completedItem.addEventListener('click', () => {incompleteTodo(completedItem)});
+  completedItem.childNodes[0].addEventListener('click', () => {incompleteTodo(completedItem)});
+  completedItem.childNodes[1].addEventListener('click', () => {removeTodo(completedItem)});
   document.getElementById('container-items-complete').appendChild(completedItem);
   item.remove();
   updateCount('complete');
@@ -43,10 +46,20 @@ const completeTodo = (item) => {
 const incompleteTodo = (item) => {
   let completedItem = item.cloneNode(true);
   completedItem.className = "item"
-  completedItem.addEventListener('click', () => {completeTodo(completedItem)});
+  completedItem.childNodes[0].addEventListener('click', () => {completeTodo(completedItem)});
+  completedItem.childNodes[1].addEventListener('click', () => {removeTodo(completedItem)});
   document.getElementById('container-items-incomplete').appendChild(completedItem);
   item.remove();
   updateCount('incomplete');
+}
+
+const removeTodo = (item) => {
+  item.remove();
+  if (item.className == "item") {
+    updateCount('delete_incomplete');
+  } else {
+    updateCount('delete_complete');
+  }
 }
 
 const updateCount = (actionType) => {
@@ -63,6 +76,12 @@ const updateCount = (actionType) => {
     case 'complete':
       incompleteCount -= 1;
       completeCount += 1;
+      break;
+    case 'delete_incomplete':
+      incompleteCount -= 1;
+      break;
+    case 'delete_complete':
+      completeCount -= 1;
       break;
   }
 
