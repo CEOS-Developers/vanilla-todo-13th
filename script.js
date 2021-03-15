@@ -28,13 +28,27 @@ function refreshList() {
   let doneCount = 0;
 
   list.forEach((element, index) => {
+    const li = document.createElement('li');
+    const p = document.createElement('p');
+    const btn = document.createElement('button');
+    const img = document.createElement('img');
+
+    li.appendChild(p);
+    li.appendChild(btn);
+    btn.appendChild(img);
+
+    li.onclick = function () {
+      setDone(index, !element.isDone);
+    };
+
+    p.innerText = element.text;
+    img.src = 'img/bin.png';
+
     if (element.isDone) {
-      doneList.innerHTML +=
-          `<li onclick="setDone(${index}, false)">${element.text}</li>`;
+      doneList.appendChild(li);
       doneCount++;
     } else {
-      waitList.innerHTML +=
-        `<li onclick="setDone(${index}, true)">${element.text}</li>`;
+      waitList.appendChild(li);
       waitCount++;
     }
   });

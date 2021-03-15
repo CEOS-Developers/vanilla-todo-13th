@@ -54,7 +54,30 @@ p {
 }
 
 li {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.list li p {
   padding: 0.1em 1em;
+  flex: 1 0 auto;
+}
+
+.list li img{
+  flex: 0 0 auto;
+  height: 1.2em;
+  margin-right: 0.5em;
+  opacity: 0;
+  transition: opacity .2s ease-in-out;
+  -moz-transition: opacity .2s ease-in-out;
+  -webkit-transition: opacity .2s ease-in-out;
+}
+.list li:hover img{
+  opacity: 1.0;
+  transition: opacity .2s ease-in-out;
+  -moz-transition: opacity .2s ease-in-out;
+  -webkit-transition: opacity .2s ease-in-out;
 }
 
 .input_container {
