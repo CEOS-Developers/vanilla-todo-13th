@@ -41,6 +41,11 @@ function refreshList() {
       setDone(index, !element.isDone);
     };
 
+    btn.onclick = function () {
+      delete list[index];
+      refreshList();
+    };
+
     p.innerText = element.text;
     img.src = 'img/bin.png';
 
