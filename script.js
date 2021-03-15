@@ -12,61 +12,73 @@ const handleTodoMouseOut = (trashImg) => {
   trashImg.className = "trash hide"
 }
 
-document.getElementById('new_item').addEventListener('keydown', handleTodoInputKeyEvent);
+const createTodoElement = (item) => {
+  let newItem = document.createElement('div');
+  newItem.id = item.id;
+    
+  let todoSpan = document.createElement('span');
+  todoSpan.appendChild(document.createTextNode(item.todoValue));
+  newItem.appendChild(todoSpan);
+
+  const trashImg = document.createElement('img');
+  trashImg.src = 'img/bin.png';
+  trashImg.alt = 'complete';
+  trashImg.className = 'trash hidden';
+  trashImg.addEventListener('click', () => {removeTodo(newItem)});
+  newItem.appendChild(trashImg);
+
+  newItem.addEventListener('mouseover', () => {handleTodoMouseOver(trashImg)});
+  newItem.addEventListener('mouseout', () => {handleTodoMouseOut(trashImg)});
+
+  if (item.completed) {
+    newItem.className = "item complete";
+    todoSpan.addEventListener('click', () => { incompleteTodo(newItem) });
+  } else {
+    newItem.className = "item";
+    todoSpan.addEventListener('click', () => { completeTodo(newItem) });
+  }
+
+  return newItem;
+}
+
+// TODO CRUD
 
 const addTodo = () => {
   const todoValue = document.getElementById("new_item").value;
   if (todoValue != null && todoValue != '') {
     document.getElementById("new_item").value = '';
-    let todoSpan = document.createElement('span');
-    todoSpan.appendChild(document.createTextNode(todoValue));
-  
-    const trashImg = document.createElement('img');
-    trashImg.src = 'img/bin.png';
-    trashImg.alt = 'complete';
-    trashImg.className = 'trash hidden';
-    
-    let newItem = document.createElement('div');
-    newItem.className = "item";
-    d = new Date()
-    newItem.id = d.getTime()
-    newItem.addEventListener('mouseover', () => {handleTodoMouseOver(trashImg)});
-    newItem.addEventListener('mouseout', () => {handleTodoMouseOut(trashImg)});
-    todoSpan.addEventListener('click', () => {completeTodo(newItem)});
-    newItem.appendChild(todoSpan);
-    trashImg.addEventListener('click', () => {removeTodo(newItem)});
-    newItem.appendChild(trashImg);
-
-    document.getElementById('container-items-incomplete').appendChild(newItem);
-    updateCount('add');
-    
-    newItemObj = {
+    let d = new Date();
+    const newItemObj = {
       id: d.getTime().toString(),
       todoValue,
-      completed: false
-    }
-
+      completed: false,
+    };
+    const newItem = createTodoElement(newItemObj);
+    document.getElementById('container-items-incomplete').appendChild(newItem);
     addLocalStorage(newItemObj);
+    updateCount('add');
   }
 }
 
 const completeTodo = (item) => {
-  let completedItem = item.cloneNode(true);
-  completedItem.className = "item complete"
-  completedItem.childNodes[0].addEventListener('click', () => {incompleteTodo(completedItem)});
-  completedItem.childNodes[1].addEventListener('click', () => {removeTodo(completedItem)});
-  document.getElementById('container-items-complete').appendChild(completedItem);
+  let newItem = createTodoElement({
+    id: item.id,
+    todoValue: item.childNodes[0].innerText,
+    completed: true
+  })
+  document.getElementById('container-items-complete').appendChild(newItem);
   updateLocalStorage(item.id, 'complete');
   item.remove();
   updateCount('complete');
 }
 
 const incompleteTodo = (item) => {
-  let completedItem = item.cloneNode(true);
-  completedItem.className = "item"
-  completedItem.childNodes[0].addEventListener('click', () => {completeTodo(completedItem)});
-  completedItem.childNodes[1].addEventListener('click', () => {removeTodo(completedItem)});
-  document.getElementById('container-items-incomplete').appendChild(completedItem);
+  let newItem = createTodoElement({
+    id: item.id,
+    todoValue: item.childNodes[0].innerText,
+    completed: false
+  });
+  document.getElementById('container-items-incomplete').appendChild(newItem);
   updateLocalStorage(item.id, 'incomplete');
   item.remove();
   updateCount('incomplete');
@@ -76,15 +88,20 @@ const removeTodo = (item) => {
   updateLocalStorage(item.id, 'remove');
   item.remove();
   if (item.className == "item") {
-    updateCount('delete_incomplete');
+    updateCount('remove_incomplete');
   } else {
-    updateCount('delete_complete');
+    updateCount('remove_complete');
   }
 }
 
+// Count number of items
+
 const updateCount = (actionType) => {
-  let incompleteCount = parseInt(document.getElementById('incomplete_count').innerText.substring(1,2));
-  let completeCount = parseInt(document.getElementById('complete_count').innerText.substring(1,2));
+  let incompleteSpan = document.getElementById('incomplete_count');
+  let completeSpan = document.getElementById('complete_count');
+
+  let incompleteCount = parseInt(incompleteSpan.getAttribute('data-todo-incomplete-count'));
+  let completeCount = parseInt(completeSpan.getAttribute('data-todo-complete-count'));
 
   switch(actionType) {
     case 'incomplete':
@@ -93,20 +110,23 @@ const updateCount = (actionType) => {
       incompleteCount += 1;
       break;
     case 'complete':
-      incompleteCount -= 1;
       completeCount += 1;
-      break;
-    case 'delete_incomplete':
+    case 'remove_incomplete':
       incompleteCount -= 1;
       break;
-    case 'delete_complete':
+    case 'remove_complete':
       completeCount -= 1;
       break;
   }
 
-  document.getElementById('incomplete_count').innerHTML = '(' + incompleteCount.toString() + ')';
-  document.getElementById('complete_count').innerHTML = '(' + completeCount.toString() + ')';
+  incompleteSpan.setAttribute('data-todo-incomplete-count', incompleteCount);
+  incompleteSpan.innerHTML = '(' + incompleteCount.toString() + ')';
+  completeSpan.setAttribute('data-todo-complete-count', completeCount);
+  completeSpan.innerHTML = '(' + completeCount.toString() + ')';
 }
+
+
+// LocalStorage Handlers
 
 const addLocalStorage = (newItemObj) => {
   ls = localStorage.getItem('todos');
@@ -138,41 +158,34 @@ const updateLocalStorage = (itemId, actionType) => {
 
 const loadLocalStorage = () => {
   ls = JSON.parse(localStorage.getItem('todos'));
+  
   let completeCount = 0;
   let incompleteCount = 0;
 
-  ls.forEach(item => {
-    let newItem = document.createElement('div');
-    
-    let todoSpan = document.createElement('span');
-    todoSpan.appendChild(document.createTextNode(item.todoValue));
-    newItem.appendChild(todoSpan);
+  if(ls !== null) {
+    ls.forEach(item => {
+      let newItem = createTodoElement(item);
+  
+      if (item.completed) {
+        document.getElementById('container-items-complete').appendChild(newItem);
+        completeCount++;
+      } else {
+        document.getElementById('container-items-incomplete').appendChild(newItem);
+        incompleteCount++;
+      }
+    });
+  }
 
-    const trashImg = document.createElement('img');
-    trashImg.src = 'img/bin.png';
-    trashImg.alt = 'complete';
-    trashImg.className = 'trash hidden';
-    trashImg.addEventListener('click', () => {removeTodo(newItem)});
-    newItem.appendChild(trashImg);
-
-    newItem.addEventListener('mouseover', () => {handleTodoMouseOver(trashImg)});
-    newItem.addEventListener('mouseout', () => {handleTodoMouseOut(trashImg)});
-
-    if (item.completed) {
-      newItem.className = "item complete";
-      todoSpan.addEventListener('click', () => { incompleteTodo(newItem) });
-      document.getElementById('container-items-complete').appendChild(newItem);
-      completeCount++;
-    } else {
-      newItem.className = "item";
-      todoSpan.addEventListener('click', () => { completeTodo(newItem) });
-      document.getElementById('container-items-incomplete').appendChild(newItem);
-      incompleteCount++;
-    }
-  });
-
+  document.getElementById('incomplete_count').setAttribute('data-todo-incomplete-count', incompleteCount);
   document.getElementById('incomplete_count').innerHTML = '(' + incompleteCount.toString() + ')';
+  document.getElementById('complete_count').setAttribute('data-todo-complete-count', completeCount);
   document.getElementById('complete_count').innerHTML = '(' + completeCount.toString() + ')';
 }
 
-loadLocalStorage();
+// Run as soon as page loads
+const initializeApp = () => {
+  loadLocalStorage();
+  document.getElementById('new_item').addEventListener('keydown', handleTodoInputKeyEvent);
+}
+
+window.onload = initializeApp;
