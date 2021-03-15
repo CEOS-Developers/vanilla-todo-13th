@@ -60,8 +60,13 @@ li {
 }
 
 .list li p {
-  padding: 0.1em 1em;
+  margin: .1em 1em;
   flex: 1 0 auto;
+}
+
+#done_list_container li p {
+  text-decoration: line-through;
+  color: gray;
 }
 
 .list li img{
