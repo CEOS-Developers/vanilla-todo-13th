@@ -5,12 +5,17 @@ const waitList = document.getElementById('wait_list_container');
 const doneList = document.getElementById('done_list_container');
 const addButton = document.getElementById('btn_add');
 const input = document.getElementById('input_todo');
+const form = document.getElementById('input_container');
 
 const list = [];
 
 refreshList();
 
-addButton.onclick = function () {
+// form.onsubmit = function (e) {
+addButton.onclick = function (e) {
+  if (input.value === '') return false;
+
+  e.preventDefault();
   list.push({
     text: input.value,
     isDone: false,
@@ -18,7 +23,9 @@ addButton.onclick = function () {
 
   refreshList();
   input.value = '';
-  return false;
+  input.focus();
+
+  return true;
 };
 
 function refreshList() {
