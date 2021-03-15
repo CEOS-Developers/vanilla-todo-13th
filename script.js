@@ -141,17 +141,19 @@ const addLocalStorage = (newItemObj) => {
 
 const updateLocalStorage = (itemId, actionType) => {
   ls = JSON.parse(localStorage.getItem('todos'));
-  if(actionType === 'remove') {
-    ls = ls.filter(item => item.id !== itemId);
-  } else if(actionType === 'complete' || actionType === 'incomplete') {
-    for(let i=0; i<ls.length; i++) {
-      if(ls[i].id === itemId) {
-        ls[i].completed = actionType === 'complete';
-        break;
-      }
+  let selectedItem = null;
+  ls = ls.filter((item) => {
+    if(item.id === itemId) {
+      selectedItem = item;
+      return false;
+    } else {
+      return true;
     }
-  } else {
-    console.log(`Error - Invalid actionType: ${actionType}`);
+  });
+  
+  if(actionType === 'complete' || actionType === 'incomplete') {
+    selectedItem.completed = actionType === 'complete'
+    ls.push(selectedItem);
   }
   localStorage.setItem('todos', JSON.stringify(ls));
 }
