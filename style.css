@@ -69,7 +69,7 @@ li {
   color: gray;
 }
 
-.list li img{
+.list li img {
   flex: 0 0 auto;
   height: 1.2em;
   margin-right: 0.5em;
@@ -78,7 +78,8 @@ li {
   -moz-transition: opacity .2s ease-in-out;
   -webkit-transition: opacity .2s ease-in-out;
 }
-.list li:hover img{
+
+.list li:hover img {
   opacity: 1.0;
   transition: opacity .2s ease-in-out;
   -moz-transition: opacity .2s ease-in-out;
