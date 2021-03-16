@@ -3,10 +3,22 @@ const toDoForm = document.querySelector(".toDoForm");
 const toDoInput = toDoForm.querySelector("input");
 
 //localstorage에 올릴 배열할당
-const toDos = [];
+let toDos = [];
 
 const saveLocalStorage = () => {
     localStorage.setItem("toDos", JSON.stringify(toDos));
+}
+const delHnadler = (event) => {
+    const btn = event.target.parentNode;
+    const li = btn.parentNode;
+    toDoList.removeChild(li);
+    const deletedList = toDos.filter((v) => {
+        console.log(parseInt(li.id) !== v.id)
+        return parseInt(li.id) !== v.id;
+    });
+    console.log(deletedList);
+    toDos = deletedList;
+    saveLocalStorage();
 }
 // list추가
 const appendList = (value) => {
@@ -14,6 +26,7 @@ const appendList = (value) => {
     const delButton = document.createElement("button");
     const text = document.createElement("span");
     delButton.innerHTML = "<img src='./img/bin.png' width='18'>";
+    delButton.addEventListener("click", delHnadler);
     const newId = toDos.length + 1;
     li.id = newId;
     text.innerText = value;
