@@ -5,9 +5,23 @@ const comList = document.querySelector(".completeList");
 
 // 전체 list 관리위한 배열할당
 let toDos = [];
+// list 갯수세기용
+let toDoNumber = 0;
+let completeNumber = 0;
 // localstorage에 올림
 const saveLocalStorage = () => {
     localStorage.setItem("toDos", JSON.stringify(toDos));
+}
+const paintH2 = () => {
+    const pending = document.querySelector(".pending");
+    const complete = document.querySelector(".complete");
+    toDoNumber = 0;
+    completeNumber = 0;
+    toDos.forEach((v) => {
+        v.com === false ? toDoNumber++ : completeNumber++;
+    })
+    pending.innerText = `대기중 (${toDoNumber})`;
+    complete.innerText = `완료됨 (${completeNumber})`;
 }
 // delButton의 click handler
 const delHandler = (event) => {
@@ -22,6 +36,7 @@ const delHandler = (event) => {
         return parseInt(li.id) !== v.id;
     });
     toDos = deletedList;
+    paintH2();
     saveLocalStorage();
 }
 // list의 click handler(toggle)
@@ -34,12 +49,12 @@ const toggleHandler = (e) => {
     if (toDos[index].com === false) {
         toDos[index].com = true;
         comList.appendChild(li);
-        saveLocalStorage();
     } else if (toDos[index].com === true) {
         toDos[index].com = false;
         toDoList.appendChild(li);
-        saveLocalStorage();
     }
+    paintH2();
+    saveLocalStorage();
 }
 // list추가
 const appendList = (text, com) => {
@@ -54,7 +69,6 @@ const appendList = (text, com) => {
     delButton.addEventListener("click", delHandler);
     const newId = toDos.length + 1;
     li.id = newId;
-    // li.innerText = text;
     span.innerText = text;
     li.appendChild(span);
     li.appendChild(delButton);
@@ -66,6 +80,7 @@ const appendList = (text, com) => {
         com,
     }
     toDos.push(toDoObj);
+    paintH2();
     saveLocalStorage();
 }
 //submit하면 작동되는 handler
