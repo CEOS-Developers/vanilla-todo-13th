@@ -1,13 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Vanilla Todo</title>
-    <link rel="stylesheet" href="style.css" />
-  </head>
-  <body>
-    <div class="container"></div>
-  </body>
-  <script src="script.js"></script>
+    <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+<div class="container">
+    <h3 class="label" id="wait_label">대기중</h3>
+    <ul class="list" id="wait_list_container">
+    </ul>
+    <h3 class="label" id="done_label">완료됨</h3>
+    <ul class="list" id="done_list_container">
+    </ul>
+    <form class="input_container">
+        <input id="input_todo" type="text" placeholder="새로운 할일 추가">
+        <input id="btn_add" type="submit" value="+">
+    </form>
+</div>
+</body>
+<script src="script.js"></script>
 </html>

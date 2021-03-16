@@ -40,3 +40,82 @@ p {
   box-shadow: 0 0 25px rgba(0, 0, 0, 0.25);
   background: white;
 }
+
+.label {
+  flex: 0 0 auto;
+  padding: 0.7em 0.7em;
+  margin: 0;
+}
+
+.list {
+  flex: 1 1 0;
+  list-style: none;
+  overflow-y: scroll;
+}
+
+li {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.list li p {
+  margin: .1em 1em;
+  flex: 1 0 auto;
+}
+
+#done_list_container li p {
+  text-decoration: line-through;
+  color: gray;
+}
+
+.list li img {
+  flex: 0 0 auto;
+  height: 1.2em;
+  margin-right: 0.5em;
+  opacity: 0;
+  transition: opacity .2s ease-in-out;
+  -moz-transition: opacity .2s ease-in-out;
+  -webkit-transition: opacity .2s ease-in-out;
+}
+
+.list li:hover img {
+  opacity: 1.0;
+  transition: opacity .2s ease-in-out;
+  -moz-transition: opacity .2s ease-in-out;
+  -webkit-transition: opacity .2s ease-in-out;
+}
+
+.input_container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+
+  padding: 0.5em 0.5em;
+  box-shadow: 0 -2px 2px #dadada;
+}
+
+#input_todo {
+  flex: 1 0 auto;
+  text-align: center;
+  border: 1px solid lightgray;
+  border-radius: 35px;
+}
+
+#input_todo::placeholder {
+  color: lightgray;
+  font-size: 14px;
+}
+
+#btn_add {
+  width: 35px;
+  height: 35px;
+  line-height: 100%;
+  flex: 0 0 auto;
+  color: white;
+  text-align: center;
+  background-color: #2ec1ac;
+  border-radius: 50%;
+  margin-left: 0.5em;
+}
