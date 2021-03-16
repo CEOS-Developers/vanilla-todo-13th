@@ -29,6 +29,10 @@ p {
   all: unset;
 }
 
+ul {
+  list-style: none;
+}
+
 .container {
   width: 350px;
   height: 600px;
