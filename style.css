@@ -43,4 +43,53 @@ ul {
 
   box-shadow: 0 0 25px rgba(0, 0, 0, 0.25);
   background: white;
+
+  flex-direction: column;
+}
+
+.pending {
+  /* align-items: flex-start !important; */
+  flex: 1;
+}
+
+.toDoList {
+  flex: 3;
+  display: flex;
+  flex-direction: column;
+  overflow-y: scroll;
+}
+
+.complete {
+  /* align-items: center !important; */
+  flex: 1;
+}
+
+.completeList {
+  /* align-items: center !important; */
+  flex: 3;
+  overflow-y: scroll;
+}
+
+.toDoForm {
+  flex: 1;
+}
+.li {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.text {
+  flex: 13;
+  word-break: break-all;
+}
+
+.delBtn {
+  flex: 1;
+  opacity: 0;
+  height: 20px;
+  vertical-align: center;
+}
+
+.li:hover .delBtn {
+  opacity: 1;
 }

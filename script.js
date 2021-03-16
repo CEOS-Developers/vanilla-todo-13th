@@ -24,38 +24,46 @@ const delHandler = (event) => {
     toDos = deletedList;
     saveLocalStorage();
 }
-// list의 click handler
+// list의 click handler(toggle)
 const toggleHandler = (e) => {
-    if (e.target && e.target.nodeName === "LI"){
-            const li = e.target;
-        const index = toDos.findIndex((v) => v.id === parseInt(li.id));
-        if (toDos[index].com === false) {
-            toDos[index].com = true;
-            comList.appendChild(li);
-        } else if (toDos[index].com === true) {
-            toDos[index].com = false;
-            toDoList.appendChild(li);
-        }
+    if (e.target.nodeName === 'IMG'){
+        return;
+    }
+    const li = e.target.nodeName === 'LI' ? e.target : e.target.parentNode;
+    const index = toDos.findIndex((v) => v.id === parseInt(li.id));
+    if (toDos[index].com === false) {
+        toDos[index].com = true;
+        comList.appendChild(li);
+        saveLocalStorage();
+    } else if (toDos[index].com === true) {
+        toDos[index].com = false;
+        toDoList.appendChild(li);
+        saveLocalStorage();
     }
 }
 // list추가
-const appendList = (value) => {
+const appendList = (text, com) => {
     const li = document.createElement("li");
+    li.className = 'li';
+    const span = document.createElement("span");
+    span.className = 'text';
     const delButton = document.createElement("button");
+    delButton.className = 'delBtn';
     delButton.innerHTML = "<img src='./img/bin.png' width='18'>";
     li.addEventListener("click", toggleHandler);
     delButton.addEventListener("click", delHandler);
     const newId = toDos.length + 1;
     li.id = newId;
-    li.innerText = value;
+    // li.innerText = text;
+    span.innerText = text;
+    li.appendChild(span);
     li.appendChild(delButton);
-    console.log("appendList에 li : ", li);
-    toDoList.appendChild(li);
+    com ? comList.appendChild(li) : toDoList.appendChild(li);
     // 새로 생성된 list에 해당하는 객체 생성
     const toDoObj = {
-        text: value,
+        text,
         id: newId,
-        com: false,
+        com,
     }
     toDos.push(toDoObj);
     saveLocalStorage();
@@ -64,7 +72,7 @@ const appendList = (value) => {
 const submitHandler = (event) => {
     event.preventDefault();
     const value = toDoInput.value;
-    appendList(value);
+    appendList(value, false);
     toDoInput.value = "";
 }
 // localstorage에서 data가져오기
@@ -72,8 +80,8 @@ const loadLocalStorage = () => {
     const loadToDos = localStorage.getItem("toDos");
     if (loadToDos !== null) {
         const parseToDos = JSON.parse(loadToDos);
-        parseToDos.forEach((v, i) => {
-            appendList(v.text);
+        parseToDos.forEach((v) => {
+            appendList(v.text, v.com);
         })
     }
 }

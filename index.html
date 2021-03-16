@@ -7,13 +7,20 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <h2>대기중</h2>
-    <ul class="toDoList"></ul>
-    <ul class="completeList"></ul>
-    <form class="toDoForm">
-      <input type="text" placeholder="새로운 할일 추가">
-    </form>
-    <div class="container"></div>
+    <div class="container">
+      <h2 class="pending">대기중</h2>
+        <ul class="toDoList">
+          <!-- <li class="li">
+            <span class='text'></span>
+            <button class="delBtn"></button>
+          </li> -->
+        </ul>
+      <h2 class="complete">완료됨</h2>
+        <ul class="completeList"></ul>
+      <form class="toDoForm">
+        <input type="text" placeholder="새로운 할일 추가">
+      </form>
+    </div>
   </body>
   <script src="script.js"></script>
 </html>
