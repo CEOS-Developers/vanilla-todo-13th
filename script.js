@@ -19,12 +19,15 @@ function loadToDos(){
 function addToDo(text){
     const todo = document.createElement("li");
     const delBtn = document.createElement("button");
-    delBtn.innerText = "🗑";
+    //delBtn.innerText = "";
+    delBtn.classList.add("deleteimg");
+    const completeBtn = document.createElement("button");
     const span = document.createElement("span");
     span.innerText = text;
     const todoId = todos.length+1;
 
     delBtn.addEventListener("click", deleteTodo);
+    
 
     todo.appendChild(span);
     todo.appendChild(delBtn);
