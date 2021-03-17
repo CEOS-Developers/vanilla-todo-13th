@@ -48,36 +48,43 @@ ul {
 }
 
 .pending {
-  /* align-items: flex-start !important; */
+  padding-left: 10px;
   flex: 1;
 }
 
 .toDoList {
-  flex: 3;
+  flex: 8;
   display: flex;
   flex-direction: column;
   overflow-y: scroll;
 }
 
 .complete {
-  /* align-items: center !important; */
+  padding-left: 10px;
   flex: 1;
 }
 
 .completeList {
-  /* align-items: center !important; */
-  flex: 3;
+  flex: 8;
   overflow-y: scroll;
+  text-decoration: line-through;
 }
 
 .toDoForm {
-  flex: 1;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.25);
+  flex: 2;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
 }
+
 .li {
   display: flex;
+  padding-left: 10px;
   flex-direction: row;
   align-items: center;
 }
+
 .text {
   flex: 13;
   word-break: break-all;
@@ -92,4 +99,21 @@ ul {
 
 .li:hover .delBtn {
   opacity: 1;
+}
+
+input {
+  text-align: center;
+  border: 1px solid rgb(212, 211, 211);
+  border-radius: 30px;
+  width: 300px;
+  height: 40px;
+}
+
+.inputBtn {
+  background-color: #2ec1ac;
+  text-align: center;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  color: white;
 }
