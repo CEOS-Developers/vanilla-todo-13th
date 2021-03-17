@@ -4,7 +4,7 @@ const todoForm = document.querySelector(".submitContainer"),
     todoList = document.querySelector(".todoListContainer");
 
 const TODOS_LS = "todos"
-const todos =[];    //여러개의 할 일들을 담을 리스트
+let todos =[];    //여러개의 할 일들을 담을 배열
 
 function loadToDos(){
     const localTodo = localStorage.getItem(TODOS_LS);
@@ -24,6 +24,8 @@ function addToDo(text){
     span.innerText = text;
     const todoId = todos.length+1;
 
+    delBtn.addEventListener("click", deleteTodo);
+
     todo.appendChild(span);
     todo.appendChild(delBtn);
     todo.id=todoId;
@@ -38,6 +40,17 @@ function addToDo(text){
 
     todos.push(todoObj);
     saveToLocal();
+}
+
+function deleteTodo(event){
+    const deleteNode =  event.target.parentNode; //버튼의 부모노드를 반환해줌, 여기서 id를 찾을 수 있음!
+    todoList.removeChild(deleteNode);
+    const cleanTodo = todos.filter(function(toDo){
+        return toDo.id !== parseInt(deleteNode.id);       //deleteNode.id 의 값은 string, 따라서 형변환 필요
+    });   //filter는 배열의 모든 아이템을 통해 함수를 실행, 함수 값이 true 인 아이템들로만 새로운 배열을 생성
+
+    todos=cleanTodo;
+    saveToLocal();          //실수 했던 부분, 로컬스토리지에 저장하려면 이걸 꼭 썼어야 함,,
 }
 
 function saveToLocal(){
