@@ -4,11 +4,16 @@ const todoForm = document.querySelector(".submitContainer"),
     todoList = document.querySelector(".todoListContainer");
 
 const TODOS_LS = "todos"
+const todos =[];    //여러개의 할 일들을 담을 리스트
 
 function loadToDos(){
-    const todos = localStorage.getItem(TODOS_LS);
-    if(todos!==null){
-        //로컬스토리지에서 데이터 가져오기
+    const localTodo = localStorage.getItem(TODOS_LS);
+    if(localTodo!==null){
+        //로컬스토리지에서 데이터 가져오기 String -> Obj 변환 필요
+        const local = JSON.parse(localTodo);
+        local.forEach(function(toDo){
+            addToDo(toDo.text);
+        })
     }
 }
 function addToDo(text){
@@ -17,11 +22,26 @@ function addToDo(text){
     delBtn.innerText = "🗑";
     const span = document.createElement("span");
     span.innerText = text;
+    const todoId = todos.length+1;
 
     todo.appendChild(span);
     todo.appendChild(delBtn);
+    todo.id=todoId;
+    todo.classList.add("todoList");
 
     todoList.appendChild(todo);
+
+    const todoObj = {
+        text : text,
+        id: todoId
+    };
+
+    todos.push(todoObj);
+    saveToLocal();
+}
+
+function saveToLocal(){
+    localStorage.setItem(TODOS_LS,JSON.stringify(todos))    //js 객체를 String으로 바꿔서 로컬 스토리지에 저장
 }
 
 function handleSubmit(event){
