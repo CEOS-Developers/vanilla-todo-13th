@@ -5,13 +5,14 @@ const comList = document.querySelector(".completeList");
 
 // 전체 list 관리위한 배열할당
 let toDos = [];
-// list 갯수세기용
+// 각 list 갯수세기용
 let toDoNumber = 0;
 let completeNumber = 0;
 // localstorage에 올림
 const saveLocalStorage = () => {
     localStorage.setItem("toDos", JSON.stringify(toDos));
 }
+// 대기중 완료됨 그리기
 const paintH2 = () => {
     const pending = document.querySelector(".pending");
     const complete = document.querySelector(".complete");

@@ -22,6 +22,20 @@ body {
   background: #2ec1ac;
 }
 
+@font-face {
+  font-family: 'paybooc-Bold';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-07@1.0/paybooc-Bold.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Jal_Onuel';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10-21@1.0/Jal_Onuel.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
 input,
 button,
 ul,
@@ -48,6 +62,10 @@ ul {
 }
 
 .pending {
+  font-family: 'paybooc-Bold';
+  font-size: 22px;
+  margin-top: 18px;
+  margin-bottom: 18px;
   padding-left: 10px;
   flex: 1;
 }
@@ -60,6 +78,8 @@ ul {
 }
 
 .complete {
+  font-family: 'paybooc-Bold';
+  font-size: 22px;
   padding-left: 10px;
   flex: 1;
 }
@@ -83,9 +103,12 @@ ul {
   padding-left: 10px;
   flex-direction: row;
   align-items: center;
+  padding: 3px;
+  padding-left: 12px;
 }
 
 .text {
+  font-family: 'Jal_Onuel';
   flex: 13;
   word-break: break-all;
 }
@@ -107,6 +130,7 @@ input {
   border-radius: 30px;
   width: 300px;
   height: 40px;
+  font-family: 'paybooc-Bold';
 }
 
 .inputBtn {
