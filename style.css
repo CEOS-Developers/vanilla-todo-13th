@@ -55,13 +55,20 @@ h2 {
 .complete-list{
   height: 250px;
   overflow:auto;
- 
+  color: grey;
+  text-decoration: line-through;
+}
+
+img{
+  float: right;
+  margin-right: 20px;
 }
 
 li{
   list-style:none;
   padding-left: 15px;
 }
+
 
 .input-box {
   
@@ -104,4 +111,14 @@ li{
   display: flex;
   flex-direction: row;
   align-items: stretch; 
+}
+
+button{
+  padding-right: 10px;
+}
+
+img {
+  width: 20px;
+  height: 20px;
+  object-fit: cover;
 }
