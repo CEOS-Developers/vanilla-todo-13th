@@ -64,9 +64,10 @@ function addComplete(text){
     span.innerText = text;
     //const completeID = 
 
-    completeTodo.appendChild(span);
+    
     completeTodo.appendChild(delBtn);
     completeTodo.appendChild(cancelBtn);
+    completeTodo.appendChild(span);
     completeTodo.classList.add("completeList");
 
     completeList.appendChild(completeTodo);
