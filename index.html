@@ -7,7 +7,52 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <div class="container"></div>
+    <div class="container">
+      <div id="todolist-wrap">
+        <div id="todolist-waits">
+          <div id="todolist-waits--title-section">
+            <div id="todolist-waits--title">대기중</div>
+            <div id="todolist-waits--count"></div>
+          </div>
+          <div id="todolist-waits--contents-section">
+            <div class="todolist-waits--content">
+              <div class="todolist-waits--content--text">Test1</div>
+              <img src="img/bin.png" alt="" class="todolist-delete-button">
+            </div>
+          </div>
+        </div>
+        <div id="todolist-dones">
+          <div id="todolist-dones--title-section">
+            <div id="todolist-dones--title">완료됨</div>
+            <div id="todolist-dones--count"></div>
+          </div>
+          <div id="todolist-dones--contents-section">
+            <div class="todolist-dones--content">
+              <div class="todolist-dones--content--text">Test1Test1Test1Test1Test1Test1Test1Test1Test1Test1Test1Test1Test1Test1Test1Test1Test1Test1Test1Test1Test1Test1Test1Test1Test1Test1Test1Test1Test1</div>
+              <img src="img/bin.png" alt="" class="todolist-delete-button">
+            </div>
+            <div class="todolist-dones--content">
+              <div class="todolist-dones--content--text">Test1Test1Test1Test1Test1Test1Test1Test1Test1Test1Test1Test1Test1Test1Test1Test1Test1Test1Test1Test1Test1Test1Test1Test1Test1Test1Test1Test1Test1</div>
+              <img src="img/bin.png" alt="" class="todolist-delete-button">
+            </div>
+            <div class="todolist-dones--content">
+              <div class="todolist-dones--content--text">Test1Test1Test1Test1Test1Test1Test1Test1Test1Test1Test1Test1Test1Test1Test1Test1Test1Test1Test1Test1Test1Test1Test1Test1Test1Test1Test1Test1Test1</div>
+              <img src="img/bin.png" alt="" class="todolist-delete-button">
+            </div>
+            <div class="todolist-dones--content">
+              <div class="todolist-dones--content--text">Test1Test1Test1Test1Test1Test1Test1Test1Test1Test1Test1Test1Test1Test1Test1Test1Test1Test1Test1Test1Test1Test1Test1Test1Test1Test1Test1Test1Test1</div>
+              <img src="img/bin.png" alt="" class="todolist-delete-button">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="todolist-input-form">
+        <form action="" id="todo-input">
+          <input type="text" id="todo-input--input" placeholder="새로운 할일 추가">
+          <button id="todo-input--submit">+</button>
+        </form>
+      </div>
+    </div>
   </body>
   <script src="script.js"></script>
 </html>
