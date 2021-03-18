@@ -5,19 +5,16 @@ const comList = document.querySelector(".completeList");
 
 // 전체 list 관리위한 배열할당
 let toDos = [];
-// 각 list 갯수세기용
-let toDoNumber = 0;
-let completeNumber = 0;
 // localstorage에 올림
 const saveLocalStorage = () => {
     localStorage.setItem("toDos", JSON.stringify(toDos));
 }
 // 대기중 완료됨 그리기
-const paintH2 = () => {
+const paintH3 = () => {
     const pending = document.querySelector(".pending");
     const complete = document.querySelector(".complete");
-    toDoNumber = 0;
-    completeNumber = 0;
+    let toDoNumber = 0;
+    let completeNumber = 0;
     toDos.forEach((v) => {
         v.com === false ? toDoNumber++ : completeNumber++;
     })
@@ -37,7 +34,7 @@ const delHandler = (event) => {
         return parseInt(li.id) !== v.id;
     });
     toDos = deletedList;
-    paintH2();
+    paintH3();
     saveLocalStorage();
 }
 // list의 click handler(toggle)
@@ -54,7 +51,7 @@ const toggleHandler = (e) => {
         toDos[index].com = false;
         toDoList.appendChild(li);
     }
-    paintH2();
+    paintH3();
     saveLocalStorage();
 }
 // list추가
@@ -81,7 +78,6 @@ const appendList = (text, com) => {
         com,
     }
     toDos.push(toDoObj);
-    paintH2();
     saveLocalStorage();
 }
 //submit하면 작동되는 handler
@@ -90,6 +86,7 @@ const submitHandler = (event) => {
     const value = toDoInput.value;
     appendList(value, false);
     toDoInput.value = "";
+    paintH3();
 }
 // localstorage에서 data가져오기
 const loadLocalStorage = () => {
@@ -100,6 +97,7 @@ const loadLocalStorage = () => {
             appendList(v.text, v.com);
         })
     }
+    paintH3();
 }
 const init = () =>{
     loadLocalStorage();
