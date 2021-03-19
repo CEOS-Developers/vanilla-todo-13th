@@ -50,8 +50,12 @@ li{
 }
 
 ul{
-    padding-left: 15px;
-    
+  padding-left: 15px;
+}
+
+.js-doneList{
+  text-decoration: line-through; /*왜 적용이 안되는지*/
+  color: gray;
 }
 
 .text{
