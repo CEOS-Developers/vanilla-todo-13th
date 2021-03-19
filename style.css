@@ -1,9 +1,21 @@
-
 html,
 body {
   margin: 0;
 }
-
+@font-face {
+  font-family: 'Cafe24Dangdanghae';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.2/Cafe24Dangdanghae.woff')
+    format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'MapoFlowerIsland';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/MapoFlowerIslandA.woff')
+    format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
 * {
   box-sizing: border-box;
   font-family: sans-serif;
@@ -28,18 +40,23 @@ ul,
 p {
   all: unset;
 }
+span {
+  font-family: 'MapoFlowerIsland';
+}
 
-h1{
+h1 {
   align-self: center;
   font-size: 150%;
   color: palevioletred;
+  font-family: 'MapoFlowerIsland';
 }
-.todoList, .completeList{
+.todoList,
+.completeList {
   padding-left: 8%;
   margin-top: 2%;
   font-size: 100%;
 }
-.completeList{
+.completeList {
   color: lightgrey;
   text-decoration: line-through;
 }
@@ -54,7 +71,8 @@ h1{
   box-shadow: 0 0 25px rgba(0, 0, 0, 0.25);
   background: white;
 }
-.todoListContainer,.completeContainer {
+.todoListContainer,
+.completeContainer {
   width: 100%;
   height: 50%;
   display: flex;
@@ -64,7 +82,7 @@ h1{
   overflow-y: scroll;
 }
 
-.submitContainer{
+.submitContainer {
   width: 350px;
   height: 50px;
   display: flex;
@@ -72,18 +90,20 @@ h1{
   align-items: stretch;
   border-top: 1px solid gray;
 }
-#submitBtn{
+#submitBtn {
   width: 10.7%;
   height: 70%;
   border-radius: 50%;
   background-color: palevioletred;
   text-align: center;
-  color:honeydew;
+  color: honeydew;
   margin: 2.09%;
 }
-#inputToDo{
+#inputToDo {
   width: 90%;
-  margin:3%;
+  margin-left: 3%;
+  margin-top: 2%;
+  margin-bottom: 2%;
   margin-right: 0px;
   border: 0.5px lightgray solid;
   text-align: center;
@@ -91,26 +111,34 @@ h1{
 }
 
 /*의문 ???? 3개 클래스를 따로 한거를 위에 두면 그림이 보이는데 아래 두면 안보임,,, 왜지ㅠㅜ*/
-.deleteimg{
-  background: url("./img/bin.png") no-repeat;
+.deleteimg {
+  background: url('./img/bin.png') no-repeat;
 }
-.completeimg{
-  background: url("./img/check-mark.png") no-repeat;
+.completeimg {
+  background: url('./img/check-mark.png') no-repeat;
 }
-.cancelimg{
-  background: url("./img/cancel.png") no-repeat;
+.cancelimg {
+  background: url('./img/cancel.png') no-repeat;
 }
-.deleteimg, .completeimg, .cancelimg {
+.deleteimg,
+.completeimg,
+.cancelimg {
   margin: 1%;
   margin-top: 0%;
   float: right;
-  width: 6.2%;
+  width: 6.5%;
   height: 100%;
-  border:none;
+  border: none;
   cursor: pointer;
   background-size: cover;
-  background-position-x: center; 
+  background-position-x: center;
+  opacity: 10%;
 }
-.deleteimg{
+.deleteimg {
   margin-right: 8%;
+}
+.deleteimg:hover,
+.completeimg:hover,
+.cancelimg:hover {
+  opacity: 70%;
 }
