@@ -7,7 +7,19 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <div class="container"></div>
+  <div class="container">
+    <h2>대기중&nbsp;<span id="wait-count"></span></h2>
+    <ul class="wait-list">
+    </ul>
+    <h2>완료됨&nbsp;<span id="complete-count"></span></h2>
+    <ul class="complete-list">
+    </ul>
+    
+    <form class="input-box">
+      <input id="write-here" type="text" placeholder="새로운 할일 추가">
+      <button type="submit" class="add-button">+</button>
+    </form>
+  </div>
   </body>
   <script src="script.js"></script>
 </html>
