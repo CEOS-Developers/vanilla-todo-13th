@@ -1,7 +1,19 @@
 function deleteTodoEvent(event) {
     let targetEvent = event.target.parentNode;
+    let todoListCount;
+
+    if (targetEvent.className == 'todolist-waits--content') {
+        todoListCount = parseInt(document.querySelector('#todolist-waits--count').innerText);
+        document.querySelector('#todolist-waits--count').innerHTML = todoListCount - 1;
+    }
+
+    else {
+        todoListCount = parseInt(document.querySelector('#todolist-dones--count').innerText);
+        console.log(todoListCount)
+        document.querySelector('#todolist-dones--count').innerHTML = todoListCount - 1;
+    }
+
     targetEvent.parentNode.removeChild(targetEvent);
-    console.log('deleted')
 }
 
 function addTodoEvent(event) {
