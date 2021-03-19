@@ -3,8 +3,7 @@ function deleteTodoEvent(event) {
     let todoListCount;
 
     if (targetEvent.className == 'todolist-waits--content') {
-        todoListCount = parseInt(document.querySelector('#todolist-waits--count').innerText);
-        document.querySelector('#todolist-waits--count').innerHTML = todoListCount - 1;
+
     }
 
     else {
@@ -37,15 +36,42 @@ function addTodoEvent(event) {
 
     let todoListCount = document.querySelectorAll(".todolist-waits--content").length;
     document.querySelector("#todolist-waits--count").innerHTML = todoListCount;
-    document.querySelectorAll('.todolist-delete-button').forEach(function (element) {
-        element.addEventListener('click', deleteTodoEvent);
-    })
 
     // Prevent reloading when submit
     event.preventDefault();
+}
+
+function moveToDone(event) {
+    let target = event.target;
+    let targetTodoContent = 
+    `<div class="todolist-dones--content">
+        <div class="todolist-dones--content--text">${target.innerText}</div>
+        <img src="img/bin.png" alt="" class="todolist-delete-button">
+    </div>`
+
+    document.querySelector('#todolist-dones--contents-section').insertAdjacentHTML('beforeend', targetTodoContent);
+    target.parentNode.parentNode.removeChild(target.parentNode);
+    
+    todoListCount = parseInt(document.querySelector('#todolist-waits--count').innerText);
+    document.querySelector('#todolist-waits--count').innerHTML = todoListCount - 1;
 }
 
 document.querySelector('#todo-input').addEventListener('submit', addTodoEvent);
 document.querySelectorAll('.todolist-delete-button').forEach(function (element) {
     element.addEventListener('click', deleteTodoEvent);
 })
+document.querySelectorAll('.todolist-waits--content--text').forEach(function (element) {
+    element.addEventListener('click', moveToDone);
+})
+
+
+let observer = new MutationObserver(function () {
+    document.querySelectorAll('.todolist-delete-button').forEach(function (element) {
+        element.addEventListener('click', deleteTodoEvent);
+    })
+    document.querySelectorAll('.todolist-waits--content--text').forEach(function (element) {
+        element.addEventListener('click', moveToDone);
+    })
+});
+
+observer.observe(document.querySelector('.container'), { childList: true, subtree: true });
