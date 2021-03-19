@@ -5,6 +5,8 @@ const form = document.querySelector(".input-box"),
 
 const TODO_LS='toDos';
 
+
+
 function loadToDos(){
     const loadedToDos=localStorage.getItem(TODO_LS);
     if(loadedToDos!==null){
@@ -22,99 +24,76 @@ const toDos=[];
 function paintToDo(text){
     const plusLi = document.createElement('li');
     const delBtn = document.createElement('img');
-    
-    const span = document.createElement("span");
 
-    
-    const img=document.createElement("img");
+    //const img=document.createElement("img");
     delBtn.src="img/bin.png";
-    
-    delBtn.addEventListener("click",deleteToDo);
+    //delBtn.innerHTML="$";
+
+    //delBtn.append(img);
+    delBtn.addEventListener("click", deleteToDo);
     const newId=toDos.length+1;
-    plusLi.innerText = input.value;
+    //plusLi.innerHTML = input.value;
     const inputText=document.createTextNode(input.value);
-    plusLi.id="plusLi";
-   
-    //plusLi.addEventListener("click", toggleToDo);
-    
+    plusLi.id=newId;
+
+    const span = document.createElement("span");
+    span.addEventListener("click", toggleToDo);
+    //span.innerText=text;
     span.appendChild(inputText);
-    span.appendChild(delBtn);
-    plusLi.addEventListener("click", toggleToDo);
-    //plusLi.appendChild(delBtn);
     plusLi.appendChild(span);
+    plusLi.appendChild(delBtn);
+
     waitList.appendChild(plusLi);
+    countTodos();
 
     const toDoObj = {
         text: text,
         id: newId
     };
     //saveToDos();
-    //toDos.push(toDoObj);
+    toDos.push(toDoObj);
 }
 
 function toggleToDo(event){
-    console.log("toggle");
-    const btn = event.target;
-    const li = btn.parentNode;
-    const span = document.createElement("span");
-    const delBtn=document.createElement('img');
-    delBtn.src="img/bin.png";
-    const inputText=document.createTextNode(li.innerText);
-    
-    while(li.hasChildNodes()){
-        li.removeChild(li.firstChild);
-    }
-   
-    delBtn.addEventListener("click",deleteComplete);
-    span.addEventListener("click", toggleUp);
-    
-    span.appendChild(inputText);
-    li.appendChild(span);
-    li.after(delBtn);
-    
-    completeList.appendChild(li);
+    let span = event.target;
+    let li = span.parentNode;
+    //if(waitList.has)
+    // waitList.removeChild(li);
+    span.removeEventListener("click", toggleToDo);
+    let completedLi = li.cloneNode(true);
+    li.remove();
+    // completeList.appendChild(li);
+    completedLi.childNodes[0].addEventListener("click", toggleUp);
+    completedLi.childNodes[1].addEventListener("click", deleteToDo);
+    completeList.appendChild(completedLi);
+    countTodos();
+}
 
-    
+function toggleUp(event){
+    let span=event.target;
+    let li=span.parentNode;
+    span.removeEventListener("click", toggleUp);
+    let incompletedLi = li.cloneNode(true);
+    incompletedLi.childNodes[0].addEventListener("click", toggleToDo);
+    incompletedLi.childNodes[1].addEventListener("click", deleteToDo);
+    waitList.appendChild(incompletedLi);
+    li.remove();
+    countTodos();
 }
 
 function deleteToDo(event){
     console.log("delete");
-    const btn = event.target;
-    const li = btn.parentNode;
-    waitList.removeChild(li);
-    completeList.removeChild(li);
+    let btn = event.target;
+    let li = btn.parentNode;
+    li.parentNode.removeChild(li);
+    countTodos();
 }
 
-function toggleUp(event){
-    const btn=event.target;
-    const li=btn.parentNode;
-    const span = document.createElement("span");
-    const delBtn=document.createElement('img');
-    delBtn.src="img/bin.png";
-    /*
-    li.removeEventListener("click",toggleUp);
-    li.addEventListener("click", function(){
-        completeList.remove(li);
-        waitList.append(li);
-        li.addEventListener("click", toggleToDo);
-    });
-    */
-    
-    while(li.hasChildNodes()){
-        li.removeChild(li.firstChild);
-    }
-    delBtn.addEventListener("click",deleteToDo);
-    span.addEventListener("click", toggleToDo);
-    li.appendChild(span);
-    li.appendChild(delBtn);
-    waitList.append(li);
-
-}
-
-function deleteComplete(event){
-    const btn = event.target;
-    const li = btn.parentNode;
-    completeList.removeChild(li);
+function countTodos() {
+    let completedCount = document.querySelectorAll("ul.wait-list li").length;
+    let incompletedCount = document.querySelectorAll("ul.complete-list li").length;
+    document.getElementById("wait-count").innerHTML = "(" + completedCount.toString() + ")"
+    document.getElementById("complete-count").innerHTML = "(" + incompletedCount.toString() + ")";
 }
 
 function handleSubmit(event){
@@ -123,10 +102,9 @@ function handleSubmit(event){
     paintToDo(currentValue);
     input.value="";
 }
-
 function init(){
     loadToDos();
+    countTodos();
     form.addEventListener("submit",handleSubmit);
 }
-
 init();
