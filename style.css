@@ -67,6 +67,8 @@ img{
 li{
   list-style:none;
   padding-left: 15px;
+  line-height: 30px;
+  width: 350px;
 }
 
 
@@ -83,10 +85,11 @@ li{
 .add-button{
   width: 34px;
   height: 34px;
-  border-radius: 17px;
+  border-radius: 34px;
   display: flex;
   align-items: center;
   justify-content: center;
+  text-align: center;
 
   background-color: #2ec1ac;
   color: white;
@@ -106,7 +109,7 @@ li{
 
   border: solid 1px rgba(0, 0, 0, 0.25);
   border-radius: 20px;
-  width: 260px;
+  width: 350px;
   
   display: flex;
   flex-direction: row;
