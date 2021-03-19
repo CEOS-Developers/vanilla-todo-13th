@@ -105,4 +105,4 @@ window.onload = function () {
 
     document.querySelector('#todolist-waits--count').innerText = waitEventCount;
     document.querySelector('#todolist-dones--count').innerText = doneEventCount;
-});
+};
