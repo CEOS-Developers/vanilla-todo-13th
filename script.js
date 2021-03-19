@@ -42,6 +42,10 @@ function paintToDo(text){
     span.appendChild(inputText);
     plusLi.appendChild(span);
     plusLi.appendChild(delBtn);
+    delBtn.hidden=true;
+    plusLi.addEventListener("mouseover",function(){
+        plusLi.childNodes[1].hidden=false;
+    });
 
     waitList.appendChild(plusLi);
     countTodos();
@@ -63,8 +67,13 @@ function toggleToDo(event){
     let completedLi = li.cloneNode(true);
     li.remove();
     // completeList.appendChild(li);
+    
     completedLi.childNodes[0].addEventListener("click", toggleUp);
     completedLi.childNodes[1].addEventListener("click", deleteToDo);
+    completedLi.childNodes[1].hidden=true;
+    completedLi.addEventListener("mouseover",function(){
+        completedLi.childNodes[1].hidden=false;
+    });
     completeList.appendChild(completedLi);
     countTodos();
 }
@@ -76,6 +85,10 @@ function toggleUp(event){
     let incompletedLi = li.cloneNode(true);
     incompletedLi.childNodes[0].addEventListener("click", toggleToDo);
     incompletedLi.childNodes[1].addEventListener("click", deleteToDo);
+    incompletedLi.childNodes[1].hidden=true;
+    incompletedLi.addEventListener("mouseover",function(){
+        incompletedLi.childNodes[1].hidden=false;
+    });
     waitList.appendChild(incompletedLi);
     li.remove();
     countTodos();
