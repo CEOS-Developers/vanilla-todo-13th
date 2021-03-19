@@ -7,7 +7,18 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <div class="container"></div>
+    <div class="container">
+      <div class="container-topT text">대기중 </div>
+      <div class="container-top content">
+        <ul class="js-toDoList"></ul>
+      </div>
+      <div class="container-bottomT text">완료됨 </div>
+      <div class="container-bottom content"></div>
+      <form class=jsForm>
+        <input type="text" name="todo" placeholder="새로운 할일 추가" minlength="1" maxlength="35" size="40">
+        <button class="btn" type="button">+</button>
+    </form> 
+    </div>
   </body>
   <script src="script.js"></script>
 </html>
