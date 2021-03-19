@@ -3,12 +3,12 @@ function deleteTodoEvent(event) {
     let todoListCount;
 
     if (targetEvent.className == 'todolist-waits--content') {
-
+        todoListCount = parseInt(document.querySelector('#todolist-waits--count').innerText);
+        document.querySelector('#todolist-waits--count').innerHTML = todoListCount - 1;
     }
 
     else {
         todoListCount = parseInt(document.querySelector('#todolist-dones--count').innerText);
-        console.log(todoListCount)
         document.querySelector('#todolist-dones--count').innerHTML = todoListCount - 1;
     }
 
@@ -54,6 +54,9 @@ function moveToDone(event) {
     
     todoListCount = parseInt(document.querySelector('#todolist-waits--count').innerText);
     document.querySelector('#todolist-waits--count').innerHTML = todoListCount - 1;
+
+    todoListCount = parseInt(document.querySelector('#todolist-dones--count').innerText);
+    document.querySelector('#todolist-dones--count').innerHTML = todoListCount + 1;
 }
 
 function moveToWait(event) {
@@ -69,6 +72,9 @@ function moveToWait(event) {
     
     todoListCount = parseInt(document.querySelector('#todolist-dones--count').innerText);
     document.querySelector('#todolist-dones--count').innerHTML = todoListCount - 1;
+
+    todoListCount = parseInt(document.querySelector('#todolist-waits--count').innerText);
+    document.querySelector('#todolist-waits--count').innerHTML = todoListCount + 1;
 }
 
 document.querySelector('#todo-input').addEventListener('submit', addTodoEvent);
@@ -78,7 +84,7 @@ document.querySelectorAll('.todolist-delete-button').forEach(function (element) 
 document.querySelectorAll('.todolist-waits--content--text').forEach(function (element) {
     element.addEventListener('click', moveToDone);
 })
-document.querySelectorAll('todolist-dones--content--text').forEach(function (element) {
+document.querySelectorAll('.todolist-dones--content--text').forEach(function (element) {
     element.addEventListener('click', moveToWait);
 })
 
