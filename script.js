@@ -7,25 +7,21 @@ const TODOS_LS = "toDos";
 let toDos = [];  //상단 박스에 들어갈 todo
 const done = []; //완료된 리스트 
 
+
 function saveToDos(){
     localStorage.setItem(TODOS_LS, JSON.stringify(toDos));
 } //새로고침 후에도 기존 내용 유지하기 위함
 
 function deleteToDo(event){
-    //console.log(event.target.parentNode);
-    const btn = event.target;
-    const li = btn.parentNode;
-    const index = parseInt(li.id);
-    toDoList.removeChild(li);
-    toDos.splice(index,1);
-    saveToDos();
-   /* toDoList.removeChild(li);
+    var listItem = this.parentNode;
+    var ul = listItem.parentNode;
+    ul.removeChild(listItem);
     const cleanToDos = toDos.filter(function(toDo){
-        return toDo.id !== parseInt(li.id);
+        return toDo.id !== parseInt(ul.id);
     });
     toDos = cleanToDos;
-    saveToDos();*/
-}
+    saveToDos();
+} //리스트 내용 삭제
 
 function doneToDos(text){
 
