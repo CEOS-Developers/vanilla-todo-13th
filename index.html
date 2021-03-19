@@ -7,7 +7,25 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <div class="container"></div>
+    <div class="container">
+      <div class="title">대기중
+        <span>(0)</span>
+      </div>
+      <div class="content" id="content-incomplete">
+        <!-- <div class="todo">
+          <span>todo</span>
+          <img src="img/bin.png" alt="" class="trashcan">
+        </div> -->
+      </div>
+      <div class="title">완료됨
+        <span>(0)</span>
+      </div>
+      <div class="content"></div>
+      <div class="add">
+        <input type="text" placeholder="새로운 할일 추가" id="new-to-do" />
+        <button class="add_button" onclick="addToDo()">+</button>
+      </div>
+    </div>
+    <script src="script.js"></script>
   </body>
-  <script src="script.js"></script>
 </html>
