@@ -98,7 +98,7 @@ let observer = new MutationObserver(function () {
         element.addEventListener('click', moveToDone);
     })
 
-    document.querySelectorAll('todolist-dones--content--text').forEach(function (element) {
+    document.querySelectorAll('.todolist-dones--content--text').forEach(function (element) {
         element.addEventListener('click', moveToWait);
     })
 });
