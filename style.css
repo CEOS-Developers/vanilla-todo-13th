@@ -43,15 +43,16 @@ li{
   box-shadow: 0 0 25px rgba(0, 0, 0, 0.25);
   background: white;
 }
-.js-toDoList{
+.list{
     margin:0px;
     padding-left:0px;
 }
 
-.js-toDoList ul{
+ul{
     padding-left: 15px;
     
 }
+
 .text{
     margin:0px;
     padding:15px;
