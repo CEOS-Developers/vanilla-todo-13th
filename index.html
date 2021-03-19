@@ -7,7 +7,36 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <div class="container"></div>
+    <div class="container">
+      <div id="todolist-wrap">
+        <div id="todolist-waits">
+          <div id="todolist-waits--title-section">
+            <div id="todolist-waits--title">대기중 (
+              <p id="todolist-waits--count">0<p>
+            )
+            </div>
+          </div>
+          <div id="todolist-waits--contents-section">
+          </div>
+        </div>
+        <div id="todolist-dones">
+          <div id="todolist-dones--title-section">
+            <div id="todolist-dones--title">완료됨 (
+              <p id="todolist-dones--count">0</p>
+            )
+            </div>
+          </div>
+          <div id="todolist-dones--contents-section">
+          </div>
+        </div>
+      </div>
+      <div id="todolist-input-form">
+        <form action="" id="todo-input">
+          <input type="text" id="todo-input--input" placeholder="새로운 할일 추가">
+          <button id="todo-input--submit">+</button>
+        </form>
+      </div>
+    </div>
   </body>
   <script src="script.js"></script>
 </html>
