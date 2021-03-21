@@ -1,3 +1,4 @@
+// Event handlers
 const handleTodoInputKeyEvent = (e) => {
   if (e.code === "Enter") {
     addTodo();
@@ -11,6 +12,8 @@ const handleTodoMouseOver = (trashImg) => {
 const handleTodoMouseOut = (trashImg) => {
   trashImg.className = "trash hide"
 }
+
+// Todo Items CRUD
 
 const createTodoElement = (item) => {
   let newItem = document.createElement('div');
@@ -40,8 +43,6 @@ const createTodoElement = (item) => {
 
   return newItem;
 }
-
-// TODO CRUD
 
 const addTodo = () => {
   const todoValue = document.getElementById("new_item").value;
@@ -97,8 +98,8 @@ const removeTodo = (item) => {
 // Count number of items
 
 const updateCount = (actionType) => {
-  let incompleteSpan = document.getElementById('incomplete_count');
-  let completeSpan = document.getElementById('complete_count');
+  const incompleteSpan = document.getElementById('incomplete_count');
+  const completeSpan = document.getElementById('complete_count');
 
   let incompleteCount = parseInt(incompleteSpan.getAttribute('data-todo-incomplete-count'));
   let completeCount = parseInt(completeSpan.getAttribute('data-todo-complete-count'));
@@ -129,7 +130,7 @@ const updateCount = (actionType) => {
 // LocalStorage Handlers
 
 const addLocalStorage = (newItemObj) => {
-  ls = localStorage.getItem('todos');
+  let ls = localStorage.getItem('todos');
   ls = JSON.parse(ls);
   if (ls === null) {
     ls = [newItemObj];
@@ -140,7 +141,7 @@ const addLocalStorage = (newItemObj) => {
 }
 
 const updateLocalStorage = (itemId, actionType) => {
-  ls = JSON.parse(localStorage.getItem('todos'));
+  let ls = JSON.parse(localStorage.getItem('todos'));
   let selectedItem = null;
   ls = ls.filter((item) => {
     if(item.id === itemId) {
@@ -159,7 +160,7 @@ const updateLocalStorage = (itemId, actionType) => {
 }
 
 const loadLocalStorage = () => {
-  ls = JSON.parse(localStorage.getItem('todos'));
+  let ls = JSON.parse(localStorage.getItem('todos'));
   
   let completeCount = 0;
   let incompleteCount = 0;
