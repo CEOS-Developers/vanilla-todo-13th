@@ -39,4 +39,98 @@ p {
 
   box-shadow: 0 0 25px rgba(0, 0, 0, 0.25);
   background: white;
+  padding: 20px 20px 0 20px;
+}
+
+div.container-items {
+  flex: 1;
+  overflow-y: auto;
+  margin-bottom: 20px;
+}
+
+div.item {
+  cursor: pointer;
+  margin: 0 0 10px 0;
+  display: flex;
+  justify-content: center;
+}
+div.item > span {
+  flex-grow: 1
+}
+div.item > img.trash {
+  max-height: 1rem;
+  cursor: pointer;
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.hide {
+  animation-name: fadeOut;
+  animation-duration: 0.75s;
+  animation-fill-mode: forwards;
+  animation-play-state: running;
+}
+
+.hidden {
+  opacity: 0;
+}
+
+.show {
+  animation-name: fadeIn;
+  animation-duration: 0.75s;
+  animation-fill-mode: forwards;
+  animation-play-state: running;
+}
+
+div.title {
+  font-weight: bold;
+  font-size: 1.2em;
+}
+
+
+div.complete {
+  text-decoration: line-through;
+  color: rgba(0, 0, 0, 0.25)
+}
+
+div.add_form {
+  border-top: 1px solid #afafaf;
+  display: flex;
+  padding: 10px;
+  justify-content: center;
+  align-items: center;
+}
+
+input#new_item {
+  text-align: center;
+  border: 1px solid #bfbfbf;
+  border-radius: 1rem;
+  padding: 5px;
+  margin-right: 10px;
+  flex-grow: 1;
+}
+
+button.add_todo {
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  background-color: #2ec1ac;
+  color: white;
+  text-align: center;
 }
