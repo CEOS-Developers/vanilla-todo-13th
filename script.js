@@ -188,7 +188,7 @@ const loadLocalStorage = () => {
 // Run as soon as page loads
 const initializeApp = () => {
   loadLocalStorage();
-  document.getElementById('new_item').addEventListener('keydown', handleTodoInputKeyEvent);
+  document.getElementById('new_item').addEventListener('keypress', handleTodoInputKeyEvent);
 }
 
 window.onload = initializeApp;
