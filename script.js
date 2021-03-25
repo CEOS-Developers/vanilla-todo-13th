@@ -117,9 +117,9 @@ function deleteCompleteTodo(event){
     const cleanDone = done.filter(function(toDo){
         return toDo.id !== parseInt(delCompleteNode.id);       //deleteNode.id 의 값은 string, 따라서 형변환 필요
     });
-
     done = cleanDone;
     saveToLocal('done');
+
 }
 
 //로컬스토리지에 할 일 저장 (todolist만)
