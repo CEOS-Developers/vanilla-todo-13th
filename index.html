@@ -7,7 +7,20 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <div class="container"></div>
+    <div class="container">
+      <h1>오늘의 할 일</h1>    
+      <ul class="todoListContainer">
+      </ul>
+
+      <h1>오늘 다 한 일</h1>  
+        <ul class="completeContainer">
+        </ul>
+    
+      <form class="submitContainer">
+        <input type="text" placeholder="새로운 할 일 추가" id="inputToDo" style="font-family: 'MapoFlowerIsland';" >
+        <button type="submit" id="submitBtn">+</button>
+      </form>
+    </div>
   </body>
   <script src="script.js"></script>
 </html>
